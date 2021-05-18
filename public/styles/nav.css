@@ -1,0 +1,23 @@
+nav {
+  height: 120px;
+
+  background-color: #4056A1;
+  color: #FFFFFF;
+
+  padding: 1.5em;
+}
+
+#logo {
+  font-family: 'Bungee', sans-serif;
+}
+
+#new {
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: center;
+  float: right;
+}
+
+#arrow {
+  color: red;
+  float: right;
+}
