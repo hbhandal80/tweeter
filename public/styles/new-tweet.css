@@ -8,12 +8,12 @@
 #tweet-text {
   width: 100%;
 
-  background-color: transparent;
-
   border-bottom: 4px black solid;
   border-left: transparent;
   border-right: transparent;
   border-top: transparent;
+  
+  background-color: transparent;
 }
 
 .counter {
