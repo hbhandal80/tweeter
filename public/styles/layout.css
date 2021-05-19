@@ -24,3 +24,10 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+ main.container {
+   width: 100vw;
+   background-color: #bcebe7;
+
+   padding-left: 5vw;
+   padding-right: 5vw;
+ }
