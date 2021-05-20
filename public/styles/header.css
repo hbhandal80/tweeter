@@ -1,7 +1,10 @@
 header {
   display: flex;
-  height: 400px;
+  height: 535px;
   width: 100vw;
+
+  padding-top: 6em;
+  padding-bottom: 1em;
 
   position: relative;
   justify-content: center;
