@@ -5,37 +5,37 @@
  */
 $(document).ready(function() {
 
-  const data = [
-      {
-        "user": {
-          "name": "Newton",
-          "avatars": "https://i.imgur.com/73hZDYK.png",
-          "handle": "@SirIsaac"
-        },
-        "content": {
-          "text": "If I have seen further it is by standing on the shoulders of giants"
-        },
-        "created_at": 1621305571665
-      },
-      {
-        "user": {
-          "name": "Descartes",
-          "avatars": "https://i.imgur.com/nlhLi3I.png",
-          "handle": "@rd"
-        },
-        "content": {
-          "text": "Je pense , donc je suis"
-        },
-        "created_at": 1621391971665
-      }
-    ];
+  // const data = [
+  //   {
+  //     "user": {
+  //       "name": "Newton",
+  //       "avatars": "https://i.imgur.com/73hZDYK.png",
+  //       "handle": "@SirIsaac"
+  //     },
+  //     "content": {
+  //       "text": "If I have seen further it is by standing on the shoulders of giants"
+  //     },
+  //     "created_at": 1621305571665
+  //   },
+  //   {
+  //     "user": {
+  //       "name": "Descartes",
+  //       "avatars": "https://i.imgur.com/nlhLi3I.png",
+  //       "handle": "@rd"
+  //     },
+  //     "content": {
+  //       "text": "Je pense , donc je suis"
+  //     },
+  //     "created_at": 1621391971665
+  //   }
+  // ];
 
     
-    const createTweetElement = function(tweet) {
-      const $tweet = $(`<article id="old-tweet"></article>`);
-      const user = tweet.user;
-      const content = tweet.content;
-      const tweetMarkup = `
+  const createTweetElement = function(tweet) {
+    const $tweet = $(`<article id="old-tweet"></article>`);
+    const user = tweet.user;
+    const content = tweet.content;
+    const tweetMarkup = `
       <div id="user">
         <img id="avatar" src=${user.avatars}></img>
         <label id="users-name">${user.name}</label>
@@ -53,23 +53,40 @@ $(document).ready(function() {
       </div>
       <br>
       <br>
-      `;
+    `;
       
-      $tweet.append(tweetMarkup);
+    $tweet.append(tweetMarkup);
+    return $tweet;
+  }
 
-      console.log($tweet); // to see what it looks like
-      //$('#tweets-container').append($tweet);
-      return $tweet;
+  const renderTweets = function(tweets) {
+    for (let tweet of tweets) {
+      const $tweet = createTweetElement(tweet);
+      $('.tweetsSection').prepend($tweet);
     }
-
-    const renderTweets = function(tweets) {
-      for (let tweet of tweets) {
-        const $tweet = createTweetElement(tweet);
-        $('.tweetsSection').prepend($tweet);
+  };
+  
+  $("#form_submit").click(function(event) {
+   event.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "/tweets",
+      dataType: "json",
+      data: $("#tweet-text").serialize(),
+      success: (data) => {
+        console.log("submission successful", data);
+        
       }
-    };
-    
-    renderTweets(data);
-    
-  });
+    })
+  })
+
+  const loadtweets = function() {
+    $.ajax("/tweets", { method: "GET"})
+    .then(data => {
+      renderTweets(data);
+    })
+  }
+
+  loadtweets();
+});
 
