@@ -27,7 +27,7 @@
 
 .new-tweet button {
   margin-top: 15px;
-
+  margin-bottom: 15px;
   float: left;
 
   font-family: 'Bungee', sans-serif;
