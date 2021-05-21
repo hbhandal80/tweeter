@@ -8,6 +8,7 @@ $(document).ready(function() {
     
   const createTweetElement = function(tweet) {
     const $tweet = $(`<article id="old-tweet"></article>`);
+    let dateSince = Math.floor((Date.now() - tweet.created_at) / 86400000);
     const user = tweet.user;
     const content = tweet.content;
     const tweetMarkup = `
@@ -22,7 +23,7 @@ $(document).ready(function() {
       </div>
       <footer>
       <div>
-        <span id="time">${tweet.created_at} days ago</span>
+        <span id="time">${dateSince} days ago</span>
         <i class="fas fa-flag"></i>
         <i class="fas fa-retweet"></i>
         <i class="fas fa-heart"></i>
