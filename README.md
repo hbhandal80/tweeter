@@ -1,3 +1,8 @@
+## Screenshots
+!["Screehshot of error message](https://github.com/hbhandal80/tweeter/blob/master/docs/tweet-error.png)
+!["Screehshot of tweet page](https://github.com/hbhandal80/tweeter/blob/master/docs/tweet-main.png)
+!["Screehshot of tablet page](https://github.com/hbhandal80/tweeter/blob/master/docs/tweet-tablet.png)
+
 # Tweeter Project
 
 Tweeter is a simple, single-page Twitter clone.
