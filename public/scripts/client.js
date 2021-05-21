@@ -68,16 +68,23 @@ $(document).ready(function() {
   
   $("#form_submit").click(function(event) {
    event.preventDefault();
+
+   if (($("#tweet-text").val() === "") || ($("#tweet-text").val() === null)) {
+     alert("Please enter a tweet");
+   } else if (($("#tweet-text").val()).length > 140) {
+     alert("You haave exceeded the maximum number of characters");
+   } else {
+
     $.ajax({
       type: "POST",
       url: "/tweets",
-      dataType: "json",
+      dataType: "text",
       data: $("#tweet-text").serialize(),
       success: (data) => {
-        console.log("submission successful", data);
-        
+        console.log("submission successful", data); 
       }
     })
+  }
   })
 
   const loadtweets = function() {
@@ -86,7 +93,6 @@ $(document).ready(function() {
       renderTweets(data);
     })
   }
-
   loadtweets();
 });
 
