@@ -1,3 +1,4 @@
+//Function used for condown counter to validate the number of chars entered
 $(document).ready(function() {
   
   $("textarea").keydown(function() {
