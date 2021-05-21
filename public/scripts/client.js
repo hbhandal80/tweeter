@@ -82,6 +82,7 @@ $(document).ready(function() {
       data: $("#tweet-text").serialize(),
       success: (data) => {
         console.log("submission successful", data); 
+        location.reload(true/ false);
       }
     })
   }
