@@ -1,36 +1,10 @@
 $(document).ready(function() {
 
-  // const data = [
-  //   {
-  //     "user": {
-  //       "name": "Newton",
-  //       "avatars": "https://i.imgur.com/73hZDYK.png",
-  //       "handle": "@SirIsaac"
-  //     },
-  //     "content": {
-  //       "text": "If I have seen further it is by standing on the shoulders of giants"
-  //     },
-  //     "created_at": 1621305571665
-  //   },
-  //   {
-  //     "user": {
-  //       "name": "Descartes",
-  //       "avatars": "https://i.imgur.com/nlhLi3I.png",
-  //       "handle": "@rd"
-  //     },
-  //     "content": {
-  //       "text": "Je pense , donc je suis"
-  //     },
-  //     "created_at": 1621391971665
-  //   }
-  // ];
-  
-  const escape = function (str) {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
-    
     
   const createTweetElement = function(tweet) {
     const $tweet = $(`<article id="old-tweet"></article>`);
@@ -59,7 +33,7 @@ $(document).ready(function() {
       
     $tweet.append(tweetMarkup);
     return $tweet;
-  }
+  };
 
   const renderTweets = function(tweets) {
     for (let tweet of tweets) {
@@ -73,10 +47,10 @@ $(document).ready(function() {
     event.preventDefault();
 
     if (($("#tweet-text").val() === "") || ($("#tweet-text").val() === null)) {
-      $(".error").text("Please enter a tweet");
+      $(".error").text("Please enter a tweet below");
       $(".error").slideDown();
     } else if (($("#tweet-text").val()).length > 140) {
-      $(".error").text("You haave exceeded the maximum number of characters");
+      $(".error").text("You have exceeded the maximum number of characters");
       $(".error").slideDown();
     } else {
       $.ajax({
@@ -85,18 +59,18 @@ $(document).ready(function() {
         dataType: "text",
         data: $("#tweet-text").serialize(),
         success: (data) => {
-          console.log("submission successful", data); 
-          location.reload(true/ false);
+          console.log("submission successful", data);
+          location.reload(true / false);
         }
-      })
+      });
     }
-  })
+  });
 
   const loadtweets = function() {
     $.ajax("/tweets", { method: "GET"})
-    .then(data => {
-      renderTweets(data);
-    })
-  }
+      .then(data => {
+        renderTweets(data);
+      });
+  };
   loadtweets();
 });

@@ -1,6 +1,6 @@
 $(document).ready(function() {
   
-  $("textarea").keydown(function(event) {
+  $("textarea").keydown(function() {
     const length = ($(this).val().length);
     let count = 140;
     

@@ -1,6 +1,7 @@
-#tweets {
-  transition: box-shadow;
+#old-tweet:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.8); 
 }
+
 #old-tweet {
   margin-top: 15px;
 
