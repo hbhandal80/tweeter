@@ -5,6 +5,11 @@
   padding-bottom: 1em;
 }
 
+.error {
+  border-style: solid;
+  border: red;
+}
+
 #tweet-text {
   width: 100%;
 
@@ -12,6 +17,9 @@
   border-left: transparent;
   border-right: transparent;
   border-top: transparent;
+
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
   
   background-color: transparent;
 }
@@ -43,4 +51,12 @@
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   font-size: 25px;
+}
+
+@media only screen and (max-width:768px) {
+  .new-tweet {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+  }
 }

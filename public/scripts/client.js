@@ -1,8 +1,3 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
 $(document).ready(function() {
 
   // const data = [
@@ -29,18 +24,21 @@ $(document).ready(function() {
   //     "created_at": 1621391971665
   //   }
   // ];
+  
   const escape = function (str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
     
+    
   const createTweetElement = function(tweet) {
     const $tweet = $(`<article id="old-tweet"></article>`);
     const user = tweet.user;
     const content = tweet.content;
     const tweetMarkup = `
-      <div id="user">
+    <article class="list"> 
+    <div id="user">
         <img id="avatar" src=${user.avatars}></img>
         <label id="users-name">${user.name}</label>
         <label id="username">${user.handle}</label>
@@ -55,8 +53,8 @@ $(document).ready(function() {
         <i class="fas fa-retweet"></i>
         <i class="fas fa-heart"></i>
       </div>
-      <br>
-      <br>
+      </footer>
+      </article>
     `;
       
     $tweet.append(tweetMarkup);
@@ -66,30 +64,32 @@ $(document).ready(function() {
   const renderTweets = function(tweets) {
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
-      $('.tweetsSection').prepend($tweet);
+      $('.tweets').prepend($tweet);
     }
   };
   
   $("#form_submit").click(function(event) {
-   event.preventDefault();
+    $(".error").hide();
+    event.preventDefault();
 
-   if (($("#tweet-text").val() === "") || ($("#tweet-text").val() === null)) {
-     alert("Please enter a tweet");
-   } else if (($("#tweet-text").val()).length > 140) {
-     alert("You haave exceeded the maximum number of characters");
-   } else {
-
-    $.ajax({
-      type: "POST",
-      url: "/tweets",
-      dataType: "text",
-      data: $("#tweet-text").serialize(),
-      success: (data) => {
-        console.log("submission successful", data); 
-        location.reload(true/ false);
-      }
-    })
-  }
+    if (($("#tweet-text").val() === "") || ($("#tweet-text").val() === null)) {
+      $(".error").text("Please enter a tweet");
+      $(".error").slideDown();
+    } else if (($("#tweet-text").val()).length > 140) {
+      $(".error").text("You haave exceeded the maximum number of characters");
+      $(".error").slideDown();
+    } else {
+      $.ajax({
+        type: "POST",
+        url: "/tweets",
+        dataType: "text",
+        data: $("#tweet-text").serialize(),
+        success: (data) => {
+          console.log("submission successful", data); 
+          location.reload(true/ false);
+        }
+      })
+    }
   })
 
   const loadtweets = function() {
@@ -100,4 +100,3 @@ $(document).ready(function() {
   }
   loadtweets();
 });
-
