@@ -29,7 +29,11 @@ $(document).ready(function() {
   //     "created_at": 1621391971665
   //   }
   // ];
-
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
     
   const createTweetElement = function(tweet) {
     const $tweet = $(`<article id="old-tweet"></article>`);
@@ -42,7 +46,7 @@ $(document).ready(function() {
         <label id="username">${user.handle}</label>
       </div>
       <div id="tweet">
-        <label id="tweeted">${content.text}</label>
+        <label id="tweeted">${escape(content.text)}</label>
       </div>
       <footer>
       <div>
